@@ -93,6 +93,18 @@ Devel files needed to build apps based on QtWebSockets.
 %install
 %makeinstall_std INSTALL_ROOT=%{buildroot}
 
+## .prl/.la file love
+# nuke .prl reference(s) to %%buildroot, excessive (.la-like) libs
+pushd %{buildroot}%{_qt5_libdir}
+for prl_file in libQt5*.prl ; do
+  sed -i -e "/^QMAKE_PRL_BUILD_DIR/d" ${prl_file}
+  if [ -f "$(basename ${prl_file} .prl).so" ]; then
+    rm -fv "$(basename ${prl_file} .prl).la"
+    sed -i -e "/^QMAKE_PRL_LIBS/d" ${prl_file}
+  fi
+done
+popd
+
 install -d %{buildroot}/%{_qt5_docdir}
 
 # .la and .a files, die, die, die.
