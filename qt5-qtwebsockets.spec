@@ -3,23 +3,24 @@
 
 %define qtminor %(echo %{version} |cut -d. -f2)
 %define qtsubminor %(echo %{version} |cut -d. -f3)
-%define beta
+%define beta %nil
 
 %define qtwebsockets %mklibname qt%{api}websockets %{major}
 %define qtwebsocketsd %mklibname qt%{api}websockets -d
 %define qtwebsockets_p_d %mklibname qt%{api}websockets-private -d
 
-%define qttarballdir qtwebsockets-opensource-src-%{version}%{?beta:-%{beta}}
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtwebsockets
 Version:	5.5.0
 %if "%{beta}" != ""
 Release:	1.%{beta}.1
-Source0:	http://download.qt.io/development_releases/qt/%{api}.%{qtminor}/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
+%define qttarballdir qtwebsockets-opensource-src-%{version}-%{beta}
+Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
 Release:	1
-Source0:	http://download.qt.io/official_releases/qt/%{api}.%{qtminor}/%{version}/submodules/%{qttarballdir}.tar.xz
+%define qttarballdir qtwebsockets-opensource-src-%{version}
+Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
 Summary:	Qt GUI toolkit
 Group:		Development/KDE and Qt
