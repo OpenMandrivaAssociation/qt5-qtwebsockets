@@ -12,7 +12,7 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtwebsockets
-Version:	5.5.0
+Version:	5.5.1
 %if "%{beta}" != ""
 Release:	1.%{beta}.1
 %define qttarballdir qtwebsockets-opensource-src-%{version}-%{beta}
