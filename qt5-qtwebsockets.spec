@@ -12,13 +12,13 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtwebsockets
-Version:	5.5.1
+Version:	5.6.0
 %if "%{beta}" != ""
 Release:	1.%{beta}.1
 %define qttarballdir qtwebsockets-opensource-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
+Release:	1
 %define qttarballdir qtwebsockets-opensource-src-%{version}
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
@@ -26,10 +26,10 @@ Summary:	Qt GUI toolkit
 Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt.io
-BuildRequires:	qmake5 = %{version}
-BuildRequires:	pkgconfig(Qt5Core) = %{version}
-BuildRequires:	pkgconfig(Qt5Network) = %{version}
-BuildRequires:	pkgconfig(Qt5Test) = %{version}
+BuildRequires:	qmake5 >= %{version}
+BuildRequires:	pkgconfig(Qt5Core) >= %{version}
+BuildRequires:	pkgconfig(Qt5Network) >= %{version}
+BuildRequires:	pkgconfig(Qt5Test) >= %{version}
 
 %description
 QtWebSockets is a pure Qt implementation of WebSockets - both client and
