@@ -12,9 +12,9 @@
 %define _qt5_prefix %{_libdir}/qt%{api}
 
 Name:		qt5-qtwebsockets
-Version:	5.6.0
+Version:	5.6.1
 %if "%{beta}" != ""
-Release:	1.%{beta}.1
+Release:	0.%{beta}.1
 %define qttarballdir qtwebsockets-opensource-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
@@ -51,6 +51,8 @@ server.
 
 %files -n %{qtwebsockets}
 %{_qt5_libdir}/libQt5WebSockets.so.%{major}*
+%{_qt5_prefix}/qml/Qt/WebSockets
+%{_qt5_prefix}/qml/QtWebSockets
 
 #------------------------------------------------------------------------------
 
