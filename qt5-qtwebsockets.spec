@@ -30,7 +30,8 @@ BuildRequires:	qmake5 >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) >= %{version}
 BuildRequires:	pkgconfig(Qt5Network) >= %{version}
 BuildRequires:	pkgconfig(Qt5Test) >= %{version}
-BuildRequires:	pkgconfig(Qt5Qml) >= %{version}
+BuildRequires:	pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:	qt5-qtqml-private-devel
 
 %description
