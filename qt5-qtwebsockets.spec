@@ -33,6 +33,8 @@ BuildRequires:	pkgconfig(Qt5Test) >= %{version}
 BuildRequires:	pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:	qt5-qtqml-private-devel
+# For the Provides: generator
+BuildRequires:	cmake >= 3.11.0-1
 
 %description
 QtWebSockets is a pure Qt implementation of WebSockets - both client and
