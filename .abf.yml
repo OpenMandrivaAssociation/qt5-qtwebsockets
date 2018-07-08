@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   qtwebsockets-opensource-src-5.9.2.tar.xz: c9408a5ae443cbbadfce2dd42aba9159e95dcf63
+sources:
+  qtwebsockets-opensource-src-5.9.6.tar.xz: db61a696f0c7c87d3f72a58d55dd469c6c4a5100
