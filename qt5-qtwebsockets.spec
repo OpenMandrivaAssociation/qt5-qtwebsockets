@@ -3,7 +3,7 @@
 
 %define qtminor %(echo %{version} |cut -d. -f2)
 %define qtsubminor %(echo %{version} |cut -d. -f3)
-%define beta alpha
+%define beta beta1
 
 %define qtwebsockets %mklibname qt%{api}websockets %{major}
 %define qtwebsocketsd %mklibname qt%{api}websockets -d
