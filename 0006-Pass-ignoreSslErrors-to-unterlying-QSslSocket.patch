@@ -1,0 +1,38 @@
+From 7745489fd825445ec8f3793a3c82f07fa12707ce Mon Sep 17 00:00:00 2001
+From: Jens Trillmann <jens.trillmann@governikus.de>
+Date: Fri, 26 Feb 2021 13:06:49 +0100
+Subject: [PATCH 6/7] Pass ignoreSslErrors to unterlying QSslSocket
+
+When setting ignoreSslErrors(List<QSslError>) during the sslErrors
+signal handling the call got ignored. Only the internal config for
+creating a QSslSocket would be updated but not the current QSslSocket.
+The request of the caller to ignore specific QSslErrors would be
+ignored.
+
+Pick-to: 5.12 5.15 6.2
+Change-Id: I6aaea2111fe1d26e07e6eaaa7532ae1b14a187a8
+Reviewed-by: Allan Sandfeld Jensen <allan.jensen@qt.io>
+(cherry picked from commit b13f23d232cfdd372ef812d427872d52eed2337e)
+---
+ src/websockets/qwebsocket_p.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/websockets/qwebsocket_p.cpp b/src/websockets/qwebsocket_p.cpp
+index aedc3c6..824184a 100644
+--- a/src/websockets/qwebsocket_p.cpp
++++ b/src/websockets/qwebsocket_p.cpp
+@@ -270,6 +270,11 @@ QSslConfiguration QWebSocketPrivate::sslConfiguration() const
+ void QWebSocketPrivate::ignoreSslErrors(const QList<QSslError> &errors)
+ {
+     m_configuration.m_ignoredSslErrors = errors;
++    if (Q_LIKELY(m_pSocket)) {
++        QSslSocket *pSslSocket = qobject_cast<QSslSocket *>(m_pSocket);
++        if (Q_LIKELY(pSslSocket))
++            pSslSocket->ignoreSslErrors(errors);
++    }
+ }
+ 
+ /*!
+-- 
+2.34.1
+

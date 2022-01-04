@@ -11,6 +11,10 @@
 
 %define _qt5_prefix %{_libdir}/qt%{api}
 
+Summary:	Qt implementation of WebSockets
+Group:		Development/KDE and Qt
+License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
+URL:		http://www.qt.io
 Name:		qt5-qtwebsockets
 Version:	5.15.3
 %if "%{beta}" != ""
@@ -18,24 +22,24 @@ Release:	0.%{beta}.1
 %define qttarballdir qtwebsockets-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	1
+Release:	2
 %define qttarballdir qtwebsockets-everywhere-src-5.15.2
 Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/5.15.2/submodules/%{qttarballdir}.tar.xz
 %endif
-# From KDE
+# From KDE https://invent.kde.org/qt/qt/qtwebsockets -b kde/5.15
 Patch1000:	0001-Bump-version.patch
-Patch1002:	0003-QWebSocket-websocket-is-a-websocket-not-a-TLS-socket.patch
-Patch1003:	0004-Add-doc-note-about-internal-ping-pong-handling.patch
-Summary:	Qt GUI toolkit
-Group:		Development/KDE and Qt
-License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
-URL:		http://www.qt.io
+Patch1001:	0003-QWebSocket-websocket-is-a-websocket-not-a-TLS-socket.patch
+Patch1002:	0004-Add-doc-note-about-internal-ping-pong-handling.patch
+Patch1003:	0005-Clear-frame-on-reconnect.patch
+Patch1004:	0006-Pass-ignoreSslErrors-to-unterlying-QSslSocket.patch
+Patch1005:	0007-QWebSocketProtocol-fix-potential-UB-signed-overflow-.patch
+
 BuildRequires:	qmake5 >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) >= %{version}
 BuildRequires:	pkgconfig(Qt5Network) >= %{version}
 BuildRequires:	pkgconfig(Qt5Test) >= %{version}
 BuildRequires:	pkgconfig(Qt5Qml)
-BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:	pkgconfig(Qt5Quick)
 BuildRequires:	qt5-qtqml-private-devel
 # For the Provides: generator
 BuildRequires:	cmake >= 3.11.0-1
@@ -48,7 +52,7 @@ existing Qt projects. It has no other dependencies than Qt.
 
 #------------------------------------------------------------------------------
 
-%package -n	%{qtwebsockets}
+%package -n %{qtwebsockets}
 Summary:	Qt%{api} Component Library
 Group:		System/Libraries
 
@@ -65,10 +69,10 @@ server.
 
 #------------------------------------------------------------------------------
 
-%package -n	%{qtwebsocketsd}
+%package -n %{qtwebsocketsd}
 Summary:	Devel files needed to build apps based on QtWebSockets
 Group:		Development/KDE and Qt
-Requires:	%{qtwebsockets} = %version
+Requires:	%{qtwebsockets} = %{version}
 
 %description -n %{qtwebsocketsd}
 Devel files needed to build apps based on QtWebSockets.
@@ -85,11 +89,11 @@ Devel files needed to build apps based on QtWebSockets.
 
 #------------------------------------------------------------------------------
 
-%package -n	%{qtwebsockets_p_d}
+%package -n %{qtwebsockets_p_d}
 Summary:	Devel files needed to build apps based on QtWebSockets
 Group:		Development/KDE and Qt
-Requires:	%{qtwebsocketsd} = %version
-Provides:	qt5-qtwebsockets-private-devel = %version
+Requires:	%{qtwebsocketsd} = %{version}
+Provides:	qt5-qtwebsockets-private-devel = %{version}
 
 %description -n %{qtwebsockets_p_d}
 Devel files needed to build apps based on QtWebSockets.
@@ -114,7 +118,7 @@ Devel files needed to build apps based on QtWebSockets.
 
 ## .prl/.la file love
 # nuke .prl reference(s) to %%buildroot, excessive (.la-like) libs
-pushd %{buildroot}%{_qt5_libdir}
+cd %{buildroot}%{_qt5_libdir}
 for prl_file in libQt5*.prl ; do
   sed -i -e "/^QMAKE_PRL_BUILD_DIR/d" ${prl_file}
   if [ -f "$(basename ${prl_file} .prl).so" ]; then
@@ -122,7 +126,7 @@ for prl_file in libQt5*.prl ; do
     sed -i -e "/^QMAKE_PRL_LIBS/d" ${prl_file}
   fi
 done
-popd
+cd -
 
 install -d %{buildroot}/%{_qt5_docdir}
 
