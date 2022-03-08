@@ -1,7 +1,7 @@
-From 7745489fd825445ec8f3793a3c82f07fa12707ce Mon Sep 17 00:00:00 2001
+From 884eb082ed5d06c59b644f753d7808ba1db9bbe8 Mon Sep 17 00:00:00 2001
 From: Jens Trillmann <jens.trillmann@governikus.de>
 Date: Fri, 26 Feb 2021 13:06:49 +0100
-Subject: [PATCH 6/7] Pass ignoreSslErrors to unterlying QSslSocket
+Subject: [PATCH 2/3] Pass ignoreSslErrors to unterlying QSslSocket
 
 When setting ignoreSslErrors(List<QSslError>) during the sslErrors
 signal handling the call got ignored. Only the internal config for
@@ -34,5 +34,5 @@ index aedc3c6..824184a 100644
  
  /*!
 -- 
-2.34.1
+2.35.1
 

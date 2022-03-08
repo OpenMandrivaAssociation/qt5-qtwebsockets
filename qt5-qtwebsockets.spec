@@ -22,17 +22,14 @@ Release:	0.%{beta}.1
 %define qttarballdir qtwebsockets-everywhere-src-%{version}-%{beta}
 Source0:	http://download.qt.io/development_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}-%{beta}/submodules/%{qttarballdir}.tar.xz
 %else
-Release:	2
-%define qttarballdir qtwebsockets-everywhere-src-5.15.2
-Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/5.15.2/submodules/%{qttarballdir}.tar.xz
+Release:	3
+%define qttarballdir qtwebsockets-everywhere-opensource-src-%{version}
+Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f1-2)/%{version}/submodules/%{qttarballdir}.tar.xz
 %endif
 # From KDE https://invent.kde.org/qt/qt/qtwebsockets -b kde/5.15
-Patch1000:	0001-Bump-version.patch
-Patch1001:	0003-QWebSocket-websocket-is-a-websocket-not-a-TLS-socket.patch
-Patch1002:	0004-Add-doc-note-about-internal-ping-pong-handling.patch
-Patch1003:	0005-Clear-frame-on-reconnect.patch
-Patch1004:	0006-Pass-ignoreSslErrors-to-unterlying-QSslSocket.patch
-Patch1005:	0007-QWebSocketProtocol-fix-potential-UB-signed-overflow-.patch
+Patch1000:	0001-Clear-frame-on-reconnect.patch
+Patch1001:	0002-Pass-ignoreSslErrors-to-unterlying-QSslSocket.patch
+Patch1002:	0003-QWebSocketProtocol-fix-potential-UB-signed-overflow-.patch
 
 BuildRequires:	qmake5 >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) >= %{version}
@@ -104,7 +101,7 @@ Devel files needed to build apps based on QtWebSockets.
 #------------------------------------------------------------------------------
 
 %prep
-%autosetup -n %qttarballdir -p1
+%autosetup -n %(echo %qttarballdir|sed -e 's,-opensource,,') -p1
 %{_qt5_prefix}/bin/syncqt.pl -version %{version}
 
 %build
@@ -129,7 +126,3 @@ done
 cd -
 
 install -d %{buildroot}/%{_qt5_docdir}
-
-# .la and .a files, die, die, die.
-rm -f %{buildroot}%{_qt5_libdir}/lib*.la
-rm -f %{buildroot}%{_qt5_libdir}/lib*.a
