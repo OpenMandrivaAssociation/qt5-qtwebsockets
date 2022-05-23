@@ -1,4 +1,4 @@
-From 7196d2cc34adf9f45b50a9488f4ff95b36092993 Mon Sep 17 00:00:00 2001
+From 6a4991250793cd38efa5e8db858cd49c82439130 Mon Sep 17 00:00:00 2001
 From: Marc Mutz <marc.mutz@qt.io>
 Date: Fri, 17 Dec 2021 09:08:45 +0100
 Subject: [PATCH 3/3] QWebSocketProtocol: fix potential UB (signed overflow) in
@@ -35,5 +35,5 @@ index df87a93..d0465f1 100644
          *payload++ ^= mask[i++ % 4];
  }
 -- 
-2.35.1
+2.36.1
 
