@@ -1,4 +1,4 @@
-From 6b318a2f39942b248574438925e23b46235009b2 Mon Sep 17 00:00:00 2001
+From 07b749cdf64dc7c9fe8607633ed0e56fc75cd82a Mon Sep 17 00:00:00 2001
 From: Jens Trillmann <jens.trillmann@governikus.de>
 Date: Fri, 26 Feb 2021 13:06:49 +0100
 Subject: [PATCH 2/3] Pass ignoreSslErrors to unterlying QSslSocket
