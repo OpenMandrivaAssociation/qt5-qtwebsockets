@@ -1,7 +1,7 @@
-From 5acc07d299cb219cdfb63d33deffc432300858f1 Mon Sep 17 00:00:00 2001
+From 553f10000a9b548bba4476b55efde3feba1cd4dd Mon Sep 17 00:00:00 2001
 From: Allan Sandfeld Jensen <allan.jensen@qt.io>
 Date: Mon, 25 Jan 2021 15:34:22 +0100
-Subject: [PATCH 1/3] Clear frame on reconnect
+Subject: [PATCH 1/2] Clear frame on reconnect
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -22,10 +22,10 @@ Reviewed-by: Mårten Nordheim <marten.nordheim@qt.io>
  1 file changed, 1 insertion(+)
 
 diff --git a/src/websockets/qwebsocketdataprocessor.cpp b/src/websockets/qwebsocketdataprocessor.cpp
-index e2cc291..69c4fa8 100644
+index 2affdd5..95f1194 100644
 --- a/src/websockets/qwebsocketdataprocessor.cpp
 +++ b/src/websockets/qwebsocketdataprocessor.cpp
-@@ -269,6 +269,7 @@ void QWebSocketDataProcessor::clear()
+@@ -273,6 +273,7 @@ void QWebSocketDataProcessor::clear()
      if (!m_pConverterState)
          m_pConverterState = new QTextCodec::ConverterState(QTextCodec::ConvertInvalidToNull |
                                                             QTextCodec::IgnoreHeader);
@@ -34,5 +34,5 @@ index e2cc291..69c4fa8 100644
  
  /*!
 -- 
-2.36.1
+2.37.2
 

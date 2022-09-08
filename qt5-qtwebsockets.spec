@@ -16,7 +16,7 @@ Group:		Development/KDE and Qt
 License:	LGPLv2 with exceptions or GPLv3 with exceptions and GFDL
 URL:		http://www.qt.io
 Name:		qt5-qtwebsockets
-Version:	5.15.5
+Version:	5.15.6
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 %define qttarballdir qtwebsockets-everywhere-src-%{version}-%{beta}
@@ -28,8 +28,7 @@ Source0:	http://download.qt.io/official_releases/qt/%(echo %{version}|cut -d. -f
 %endif
 # From KDE https://invent.kde.org/qt/qt/qtwebsockets -b kde/5.15
 Patch1000:	0001-Clear-frame-on-reconnect.patch
-Patch1001:	0002-Pass-ignoreSslErrors-to-unterlying-QSslSocket.patch
-Patch1002:	0003-QWebSocketProtocol-fix-potential-UB-signed-overflow-.patch
+Patch1001:	0002-QWebSocketProtocol-fix-potential-UB-signed-overflow-.patch
 
 BuildRequires:	qmake5 >= %{version}
 BuildRequires:	pkgconfig(Qt5Core) >= %{version}

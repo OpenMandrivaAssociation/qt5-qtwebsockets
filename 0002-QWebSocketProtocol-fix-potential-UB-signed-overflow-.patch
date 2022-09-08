@@ -1,7 +1,7 @@
-From e5be9ba432929049da8f4788400c170bf71672da Mon Sep 17 00:00:00 2001
+From a066371747a7eb9de9b1ae38fbc41b2059080802 Mon Sep 17 00:00:00 2001
 From: Marc Mutz <marc.mutz@qt.io>
 Date: Fri, 17 Dec 2021 09:08:45 +0100
-Subject: [PATCH 3/3] QWebSocketProtocol: fix potential UB (signed overflow) in
+Subject: [PATCH 2/2] QWebSocketProtocol: fix potential UB (signed overflow) in
  masking operation
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -35,5 +35,5 @@ index df87a93..d0465f1 100644
          *payload++ ^= mask[i++ % 4];
  }
 -- 
-2.36.1
+2.37.2
 
