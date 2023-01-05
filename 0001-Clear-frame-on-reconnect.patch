@@ -1,4 +1,4 @@
-From cebc7e5687896c01e5c7b38ed92f222d877f3395 Mon Sep 17 00:00:00 2001
+From 28338f4d815a94ff1105ee6b9925fba202449a82 Mon Sep 17 00:00:00 2001
 From: Allan Sandfeld Jensen <allan.jensen@qt.io>
 Date: Mon, 25 Jan 2021 15:34:22 +0100
 Subject: [PATCH 1/2] Clear frame on reconnect

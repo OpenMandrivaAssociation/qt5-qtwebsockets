@@ -1,4 +1,4 @@
-From 594477769ecac4032ba116196493f3ba3db1aaed Mon Sep 17 00:00:00 2001
+From 63fb8da1ecf8e48262cd515690cf71a425f92bf5 Mon Sep 17 00:00:00 2001
 From: Marc Mutz <marc.mutz@qt.io>
 Date: Fri, 17 Dec 2021 09:08:45 +0100
 Subject: [PATCH 2/2] QWebSocketProtocol: fix potential UB (signed overflow) in
