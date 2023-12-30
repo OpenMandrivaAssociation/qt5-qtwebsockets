@@ -1,4 +1,4 @@
-From d41bb9f4f7ab9d5ff184ef94cf2f6ff7cf01de00 Mon Sep 17 00:00:00 2001
+From 9a7b9972a54137d5f2e0d49559fe58d07c90662e Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?M=C3=A5rten=20Nordheim?= <marten.nordheim@qt.io>
 Date: Tue, 13 Dec 2022 17:07:48 +0100
 Subject: [PATCH 2/2] Disconnect when handshake fails
@@ -31,5 +31,5 @@ index cf3087f..0dd0fa6 100644
  }
  
 -- 
-2.42.0
+2.43.0
 
