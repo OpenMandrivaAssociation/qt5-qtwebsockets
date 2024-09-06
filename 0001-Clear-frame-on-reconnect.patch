@@ -1,4 +1,4 @@
-From a26a851b7285e3a7bcf8fdab3341b9cfd9d2e000 Mon Sep 17 00:00:00 2001
+From 5c3efc49b598a063db6b74c01744cf095fc0fd0f Mon Sep 17 00:00:00 2001
 From: Allan Sandfeld Jensen <allan.jensen@qt.io>
 Date: Mon, 25 Jan 2021 15:34:22 +0100
 Subject: [PATCH 1/2] Clear frame on reconnect
@@ -34,5 +34,5 @@ index 2affdd5..95f1194 100644
  
  /*!
 -- 
-2.45.1
+2.46.0
 
